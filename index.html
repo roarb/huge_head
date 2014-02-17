@@ -4,6 +4,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Huge Head - Ego Deflator</title>
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
+<script type="text/javascript" charset="utf-8" src="js/cordova-2.4.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+    }
+
+    // onSuccess: Get a snapshot of the current acceleration
+    //
+    function onSuccess(acceleration) {
+        alert('Acceleration X: ' + acceleration.x + '\n' +
+              'Acceleration Y: ' + acceleration.y + '\n' +
+              'Acceleration Z: ' + acceleration.z + '\n' +
+              'Timestamp: '      + acceleration.timestamp + '\n');
+    }
+
+    // onError: Failed to get the acceleration
+    //
+    function onError() {
+        alert('onError!');
+    }
+
+    </script>
 </head>
 
 <body>
@@ -15,7 +44,9 @@ testerino
   <source src="audio/big_head.mp3" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
-
+<br /><br />
+<h1>Example</h1>
+    <p>getCurrentAcceleration</p>
 
 
 </body>
