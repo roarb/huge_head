@@ -6,19 +6,40 @@
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
 <script type="text/javascript" charset="utf-8" src="js/cordova-2.4.0.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/shake.js"></script>
-<script tyep="text/javascript">
-	var onShake = function () {
-	  // Code fired when a shake is detected
-	  document.getElementById('acceleration').innerHTML = "working correctly";
-	};
-	// Start watching for shake gestures and call "onShake"
-	shake.startWatch(onShake);
-	// Stop watching for shake gestures
-	shake.stopWatch(offShake);
-	var offShake = function(){
-		document.getElementById('acceleration').innerHTML = "stopped";
-	};
-</script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+    }
+
+    // onSuccess: Get a snapshot of the current acceleration
+    //
+	
+    function onSuccess(acceleration) {
+       ('Acceleration X: ' + acceleration.x + '\n' +
+             'Acceleration Y: ' + acceleration.y + '\n' +
+             'Acceleration Z: ' + acceleration.z + '\n' +
+             'Timestamp: '      + acceleration.timestamp + '\n');
+    }
+
+    // onError: Failed to get the acceleration
+    //
+    function onError() {
+        alert('onError!');
+    }
+	function(acceleration) {
+    document.getElementById('acceleration').innerHTML = 'Seems to be working' + 'Acceleration X: ' + acceleration.x + '\n' +
+             'Acceleration Y: ' + acceleration.y + '\n' +
+             'Acceleration Z: ' + acceleration.z + '\n' +
+             'Timestamp: '      + acceleration.timestamp + '\n';
+	}
+    </script>
 </head>
 
 <body>
@@ -31,7 +52,8 @@ testerino
 Your browser does not support the audio element.
 </audio>
 <br /><br />
-
+<h1>Example</h1>
+    <p>getCurrentAcceleration</p>
     <div id="acceleration"></div>
 
 
