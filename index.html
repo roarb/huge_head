@@ -10,35 +10,18 @@
 
     // Wait for Cordova to load
     //
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
-    }
-
-    // onSuccess: Get a snapshot of the current acceleration
-    //
-	
     function onSuccess(acceleration) {
-       ('Acceleration X: ' + acceleration.x + '\n' +
-             'Acceleration Y: ' + acceleration.y + '\n' +
-             'Acceleration Z: ' + acceleration.z + '\n' +
-             'Timestamp: '      + acceleration.timestamp + '\n');
-    }
-
-    // onError: Failed to get the acceleration
-    //
-    function onError() {
-        alert('onError!');
-    }
-	function(acceleration) {
-    document.getElementById('acceleration').innerHTML = 'Seems to be working' + 'Acceleration X: ' + acceleration.x + '\n' +
-             'Acceleration Y: ' + acceleration.y + '\n' +
-             'Acceleration Z: ' + acceleration.z + '\n' +
-             'Timestamp: '      + acceleration.timestamp + '\n';
-	}
+		alert('Acceleration X: ' + acceleration.x + '\n' +
+			  'Acceleration Y: ' + acceleration.y + '\n' +
+			  'Acceleration Z: ' + acceleration.z + '\n' +
+			  'Timestamp: '      + acceleration.timestamp + '\n');
+	};
+	
+	function onError() {
+		alert('onError!');
+	};
+	
+	navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
     </script>
 </head>
 
@@ -52,8 +35,7 @@ testerino
 Your browser does not support the audio element.
 </audio>
 <br /><br />
-<h1>Example</h1>
-    <p>getCurrentAcceleration</p>
+
     <div id="acceleration"></div>
 
 
