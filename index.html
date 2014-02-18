@@ -8,20 +8,24 @@
 <script type="text/javascript" charset="utf-8" src="js/shake.js"></script>
     <script type="text/javascript" charset="utf-8">
 
-    // Wait for Cordova to load
+   	// Wait for PhoneGap to load
     //
+    document.addEventListener("deviceready", onDeviceReady, false);
+	
     function onSuccess(acceleration) {
-		alert('Acceleration X: ' + acceleration.x + '\n' +
+		document.getElementById('acceleration').innerHTML = 'Acceleration X: ' + acceleration.x + '\n' +
 			  'Acceleration Y: ' + acceleration.y + '\n' +
 			  'Acceleration Z: ' + acceleration.z + '\n' +
-			  'Timestamp: '      + acceleration.timestamp + '\n');
+			  'Timestamp: '      + acceleration.timestamp + '\n';
 	};
 	
 	function onError() {
-		alert('onError!');
+		document.getElementById('acceleration').innerHTML ='onError!';
 	};
 	
-	navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+	function onDeviceReady() {
+        navigator.accelerometer.getCurrentAcceleration(onSuccess, onError);
+    }
     </script>
 </head>
 
@@ -31,13 +35,14 @@ testerino
 <br /><br />
 <audio controls>
   
-  <source src="audio/big_head.mp3" type="audio/mpeg">
+  <!--<source src="audio/big_head.mp3" type="audio/mpeg">
 Your browser does not support the audio element.
-</audio>
+</audio>-->
 <br /><br />
 
     <div id="acceleration"></div>
-
+    <br />
+	<a href="#" onclick="onDeviceReady();">Test Button Action</a>
 
 </body>
 </html>
